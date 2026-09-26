@@ -40,7 +40,7 @@ export default function CTASection() {
 
                     {/* Get a Quote */}
                     <Link
-                        href="/contact"
+                        href="/get-a-quote"
                         className="flex items-center justify-center gap-2.5 rounded-md bg-[#0b1437] px-8 py-4 text-[15px] font-semibold text-white transition duration-200 hover:bg-[#152159] hover:shadow-[0_8px_25px_rgba(11,20,55,0.5)]"
                     >
                         <MessageSquareQuote size={19} strokeWidth={2.2} />
