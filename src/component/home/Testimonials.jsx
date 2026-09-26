@@ -79,14 +79,36 @@ const testimonials = [
     },
 ];
 
-const VISIBLE = 3; // একসাথে কতটি দেখাবে
-
 export default function Testimonials() {
     const [index, setIndex] = useState(0);
-    const total = testimonials.length;
-    const maxIndex = total - VISIBLE; // 9 - 3 = 6 → index 0..6
+    const [visible, setVisible] = useState(3); // default 3 (SSR safe)
 
-    // Auto slide every 4 seconds
+    const total = testimonials.length;
+    const maxIndex = Math.max(0, total - visible);
+
+    /* ============ Responsive visible count ============ */
+    useEffect(() => {
+        const updateVisible = () => {
+            if (window.innerWidth < 640) {
+                setVisible(1);
+            } else if (window.innerWidth < 1024) {
+                setVisible(2);
+            } else {
+                setVisible(3);
+            }
+        };
+
+        updateVisible();
+        window.addEventListener("resize", updateVisible);
+        return () => window.removeEventListener("resize", updateVisible);
+    }, []);
+
+    /* ============ Reset index if it exceeds maxIndex ============ */
+    useEffect(() => {
+        if (index > maxIndex) setIndex(0);
+    }, [maxIndex, index]);
+
+    /* ============ Auto slide every 4s ============ */
     useEffect(() => {
         const timer = setInterval(() => {
             setIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
@@ -96,16 +118,16 @@ export default function Testimonials() {
     }, [maxIndex]);
 
     return (
-        <section className="bg-white px-6 py-16 md:px-10 lg:px-16">
+        <section className="bg-white px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-16">
             <div className="mx-auto max-w-7xl">
 
-                {/* Heading */}
-                <div className="mx-auto mb-12 max-w-3xl text-center">
-                    <h2 className="text-3xl font-bold text-[#0b1437] md:text-4xl">
+                {/* ===== Heading ===== */}
+                <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
+                    <h2 className="text-2xl font-bold text-[#0b1437] sm:text-3xl md:text-4xl">
                         Hear From Our Happy Clients
                     </h2>
 
-                    <p className="mt-4 text-sm leading-6 text-gray-500">
+                    <p className="mt-3 text-[13px] leading-6 text-gray-500 sm:mt-4 sm:text-sm sm:leading-7">
                         Discover the experiences and success stories from our
                         satisfied clients. Their feedback highlights the
                         exceptional service and outstanding results we've
@@ -113,12 +135,12 @@ export default function Testimonials() {
                     </p>
                 </div>
 
-                {/* Slider viewport */}
+                {/* ===== Slider viewport ===== */}
                 <div className="overflow-hidden">
                     <motion.div
                         className="flex"
                         animate={{
-                            x: `-${index * (100 / VISIBLE)}%`,
+                            x: `-${index * (100 / visible)}%`,
                         }}
                         transition={{
                             duration: 0.6,
@@ -128,20 +150,20 @@ export default function Testimonials() {
                         {testimonials.map((item, i) => (
                             <div
                                 key={i}
-                                className="flex w-full flex-shrink-0 flex-col items-center px-3 md:w-1/3"
+                                className="flex w-full flex-shrink-0 flex-col items-center px-2 sm:w-1/2 sm:px-3 lg:w-1/3"
                             >
                                 {/* Card */}
-                                <div className="w-full rounded-lg bg-[#f4f5f7] p-6 text-center">
-                                    <h3 className="text-lg font-semibold text-[#0b1437]">
+                                <div className="w-full rounded-lg bg-[#f4f5f7] p-5 text-center sm:p-6">
+                                    <h3 className="text-base font-semibold text-[#0b1437] sm:text-lg">
                                         {item.title}
                                     </h3>
 
-                                    <p className="mt-3 text-[13px] leading-6 text-gray-500">
+                                    <p className="mt-3 text-[12.5px] leading-6 text-gray-500 sm:text-[13px]">
                                         {item.description}
                                     </p>
                                 </div>
 
-                                {/* Avatar (object-top keeps head inside) */}
+                                {/* Avatar */}
                                 <div className="-mt-7 h-16 w-16 overflow-hidden rounded-full border-4 border-white shadow-md">
                                     <Image
                                         src={item.image}
@@ -153,11 +175,11 @@ export default function Testimonials() {
                                 </div>
 
                                 {/* Name & Role */}
-                                <h4 className="mt-3 text-base font-bold text-[#0b1437]">
+                                <h4 className="mt-3 text-[15px] font-bold text-[#0b1437] sm:text-base">
                                     {item.name}
                                 </h4>
 
-                                <p className="mt-1 text-[12px] text-gray-500">
+                                <p className="mt-1 text-[11.5px] text-gray-500 sm:text-[12px]">
                                     {item.role}
                                 </p>
                             </div>
@@ -165,17 +187,17 @@ export default function Testimonials() {
                     </motion.div>
                 </div>
 
-                {/* Pagination Dots (based on index positions) */}
-                <div className="mt-10 flex items-center justify-center gap-2">
+                {/* ===== Pagination dots ===== */}
+                <div className="mt-8 flex items-center justify-center gap-2 sm:mt-10">
                     {Array.from({ length: maxIndex + 1 }).map((_, dot) => (
                         <button
                             key={dot}
                             onClick={() => setIndex(dot)}
                             aria-label={`Go to slide ${dot + 1}`}
-                            className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                            className={`h-2 rounded-full transition-all duration-300 ${
                                 index === dot
-                                    ? "bg-[#f3292f]"
-                                    : "bg-gray-300 hover:bg-gray-400"
+                                    ? "w-6 bg-[#f3292f]"
+                                    : "w-2 bg-gray-300 hover:bg-gray-400"
                             }`}
                         />
                     ))}

@@ -42,60 +42,68 @@ export default function HomeHeroSection() {
     }, [text, deleting, wordIndex]);
 
     return (
-        <section className="relative flex h-[520px] items-center justify-center overflow-hidden bg-gradient-to-br from-[#fff5f5] via-[#f8f9ff] to-[#eef3ff] px-6">
+        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#fff5f5] via-[#f8f9ff] to-[#eef3ff] px-5 pb-14 pt-24 sm:px-6 sm:pb-16 sm:pt-28 md:min-h-[600px] md:pb-20 md:pt-32 lg:min-h-[640px]">
 
-            <div className="pointer-events-none absolute left-[-120px] top-[-120px] h-[380px] w-[380px] rounded-full bg-red-400/20 blur-[100px]" />
+            {/* Background glow orbs */}
+            <div className="pointer-events-none absolute -left-24 -top-24 h-[260px] w-[260px] rounded-full bg-red-400/20 blur-[80px] sm:h-[320px] sm:w-[320px] sm:blur-[100px] md:h-[380px] md:w-[380px]" />
 
-            <div className="pointer-events-none absolute bottom-[-140px] right-[-120px] h-[420px] w-[420px] rounded-full bg-blue-400/20 blur-[110px]" />
+            <div className="pointer-events-none absolute -bottom-28 -right-24 h-[280px] w-[280px] rounded-full bg-blue-400/20 blur-[90px] sm:h-[340px] sm:w-[340px] sm:blur-[110px] md:h-[420px] md:w-[420px]" />
 
-            <div className="pointer-events-none absolute left-[45%] top-[-180px] h-[300px] w-[300px] rounded-full bg-purple-300/15 blur-[100px]" />
+            <div className="pointer-events-none absolute left-[45%] -top-32 hidden h-[300px] w-[300px] rounded-full bg-purple-300/15 blur-[100px] sm:block" />
+
+            {/* Grid pattern */}
             <div
-                className="pointer-events-none absolute inset-0 opacity-[0.25]"
+                className="pointer-events-none absolute inset-0 opacity-[0.2] sm:opacity-[0.25]"
                 style={{
                     backgroundImage:
                         "linear-gradient(rgba(17,19,63,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(17,19,63,0.05) 1px, transparent 1px)",
-                    backgroundSize: "45px 45px",
+                    backgroundSize: "36px 36px",
                 }}
             />
 
-            <div className="relative z-10 mx-auto max-w-5xl text-center">
-                <p className="mb-3 text-sm font-semibold uppercase tracking-[5px] text-gray-500">
+            <div className="relative z-10 mx-auto w-full max-w-5xl text-center">
+
+                {/* Small label */}
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[4px] text-gray-500 sm:text-xs sm:tracking-[5px] md:text-sm">
                     We Provide
                 </p>
-                <div className="mb-4 min-h-[65px]">
-                    <h1 className="text-5xl font-bold tracking-tight text-[#11133f] md:text-6xl">
+
+                {/* Typing headline */}
+                <div className="mb-3 flex min-h-[52px] items-center justify-center sm:min-h-[68px] md:min-h-[80px]">
+                    <h1 className="text-3xl font-bold leading-tight tracking-tight text-[#11133f] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px]">
                         {text}
-                        <span className="ml-1 inline-block h-[1em] w-[3px] animate-pulse bg-[#f3292f] align-middle" />
+                        <span className="ml-1 inline-block h-[0.9em] w-[3px] animate-pulse bg-[#f3292f] align-middle" />
                     </h1>
                 </div>
-                <h2 className="mx-auto max-w-4xl text-3xl font-semibold leading-tight text-gray-800 md:text-4xl">
-                    Let's Build Something{" "}
-                    <span className="text-[#f3292f]">
-                        Extraordinary
-                    </span>{" "}
+
+                {/* Sub heading */}
+                <h2 className="mx-auto max-w-4xl text-xl font-semibold leading-snug text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl">
+                    Let&apos;s Build Something{" "}
+                    <span className="text-[#f3292f]">Extraordinary</span>{" "}
                     Together
                 </h2>
-                <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-gray-500 md:text-base">
+
+                {/* Description */}
+                <p className="mx-auto mt-4 max-w-2xl text-[13px] leading-6 text-gray-500 sm:mt-5 sm:text-sm md:text-base md:leading-7">
                     We create modern, scalable and user-friendly digital
                     solutions that help businesses grow and succeed.
                 </p>
 
-                <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-
+                {/* Buttons */}
+                <div className="mt-7 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:items-center">
                     <a
                         href="/services"
-                        className="rounded-full bg-[#11133f] px-7 py-3 text-sm font-medium text-white shadow-lg shadow-[#11133f]/15 transition duration-300 hover:-translate-y-1 hover:bg-[#f3292f] hover:shadow-red-200"
+                        className="w-full rounded-full bg-[#11133f] px-7 py-3.5 text-center text-[13px] font-medium text-white shadow-lg shadow-[#11133f]/15 transition duration-300 hover:-translate-y-1 hover:bg-[#f3292f] hover:shadow-red-200 sm:w-auto sm:text-sm"
                     >
                         Explore Services
                     </a>
 
                     <a
                         href="/contact"
-                        className="rounded-full border border-gray-300 bg-white/80 px-7 py-3 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#f3292f] hover:text-[#f3292f] hover:shadow-md"
+                        className="w-full rounded-full border border-gray-300 bg-white/80 px-7 py-3.5 text-center text-[13px] font-medium text-gray-700 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#f3292f] hover:text-[#f3292f] hover:shadow-md sm:w-auto sm:text-sm"
                     >
-                        Let's Talk
+                        Let&apos;s Talk
                     </a>
-
                 </div>
             </div>
         </section>
