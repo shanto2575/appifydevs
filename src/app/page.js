@@ -1,5 +1,7 @@
+import CTASection from "@/component/home/CTASection";
 import HomeHeroSection from "@/component/home/Hero";
 import MobileAppDevelopmentSection from "@/component/home/MobileAppDevelopmentSection";
+import Newsletter from "@/component/home/Newsletter";
 import StatsSection from "@/component/home/StatsSection";
 import TechStack from "@/component/home/TechStack";
 import Testimonials from "@/component/home/Testimonials";
@@ -17,6 +19,8 @@ export default function Home() {
       <StatsSection/>
       <Testimonials/>
       <TechStack/>
+      <Newsletter/>
+      <CTASection/>
     </div>
   );
 }
