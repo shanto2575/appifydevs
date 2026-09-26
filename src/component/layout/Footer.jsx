@@ -68,10 +68,8 @@ export default function Footer() {
     return (
         <footer className="bg-[#0b1437] text-white">
 
-            {/* Top */}
             <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-16">
 
-                {/* Logo */}
                 <div className="flex justify-center">
                     <Link href="/" className="text-[28px] font-bold tracking-tight">
                         <span className="text-[#f3292f]">Appify</span>
@@ -79,7 +77,6 @@ export default function Footer() {
                     </Link>
                 </div>
 
-                {/* Nav Links */}
                 <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
                     {links.map((link, i) => {
                         const active = i === 0;
@@ -103,16 +100,13 @@ export default function Footer() {
                 </nav>
             </div>
 
-            {/* Bottom */}
             <div className="border-t border-white/10">
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-6 py-6 md:flex-row md:px-10 lg:px-16">
 
-                    {/* Copyright */}
                     <p className="text-[13px] text-white/60">
                         © 2026 AppifyDevs. All rights reserved.
                     </p>
 
-                    {/* Social Icons — bigger & modern */}
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         {socials.map(({ icon: Icon, href, hover }, i) => (
                             <Link

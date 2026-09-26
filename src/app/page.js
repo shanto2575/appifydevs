@@ -20,7 +20,7 @@ export default function Home() {
       <Testimonials/>
       <TechStack/>
       <Newsletter/>
-      <CTASection/>
+      {/* <CTASection/> */}
     </div>
   );
 }
